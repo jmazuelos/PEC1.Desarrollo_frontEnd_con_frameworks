@@ -43,7 +43,7 @@ function isValidEmail(input){
 
 //Método que comprueba si el formato de la contraseña es válida
 function isValidPassword(input){
-    const re = /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$ %^&*-]).{8,}$/;
+    const re = /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[~@%&#/$`"'^*()_+=[\]{}<>|\\,.?!;:-]).{8,}$/;
     if(!re.test(String(input.value))){
         message = message_index_incorrectPassword_error;
         showError(input, message);
@@ -51,6 +51,7 @@ function isValidPassword(input){
         showSuccess(input);
     }
 }
+// /
 
 //Método que comprueba la cantidad de caracteres en nombre de usuario
 function isValidLength(input, label, min, max){
@@ -150,18 +151,25 @@ document.addEventListener('submit', function(e) {
 
 function showPassword(){
     const inputPassword = document.getElementById("password");
+    const visibilityIcon = document.getElementById("visibilityIcon");
+    visibilityIcon.innerHTML += 'visibility';
     if(inputPassword.type == "password"){
         inputPassword.type = "text";
+        visibilityIcon.innerText = 'visibility_off';
     }else{
         inputPassword.type = "password";
+        visibilityIcon.innerText = 'visibility';
     }
 }
 
 function showPassword2(){
     const inputPassword2 = document.getElementById("password2");
+    const visibilityIcon2 = document.getElementById("visibilityIcon2");
     if(inputPassword2.type == "password"){
         inputPassword2.type = "text";
+        visibilityIcon2.innerText = 'visibility_off';
     }else{
         inputPassword2.type = "password";
+        visibilityIcon2.innerText = 'visibility';
     }
 }
