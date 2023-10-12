@@ -15,32 +15,28 @@ function calculate(){
 
     fetch(`https://api.exchangerate-api.com/v4/latest/${currencyIn}`)
         .then(res => {
-            console.log(res);
+            /*Cuando se inicia la consulta a la API, se fuerza manualmente un estado de espera con el logo en la zona de la cantidad a devolver*/
+            showLoader();
+
+            setTimeout(function(){
+                hideLoader();
+            },1000);
+
+            /*Si la consulta API se realiza con exito, devuelve la respuesta en formato json. 
+            En caso contrario, lanza un error que se mostrará en pantalla mediante un alert (situado en el catch)*/
             if (res.ok) {
                 return res.json();   
             }
 
             throw new Error("HTTP status " + res.status + " - " + res.statusText);
         })
-        .then(data => {
-            console.log(data);
-            document.onreadystatechange = function () {
-                var state = document.readyState
-                if (state == 'interactive') {
-                     document.getElementById('contents').style.visibility="hidden";
-                } else if (state == 'complete') {
-                    setTimeout(function(){
-                       document.getElementById('interactive');
-                       document.getElementById('load').style.visibility="hidden";
-                       document.getElementById('contents').style.visibility="visible";
-                    },3000);
-                }
-            }
-
+        .then(data => { 
             const rate = data.rates[currencyOut];
             
             rateElem.innerText = `1 ${currencyIn} = ${rate} ${currencyOut}`;
 
+            /*Cuando se introduce un número negativo, se muestra un mensaje de error (indicando que no se permiten números negativos) 
+            y no calcula la cantidad a devolver*/
             if(amountIn.value < 0){
                 let message = message_index_negativeNumber_error
                 showError(message);
@@ -72,8 +68,17 @@ function showSuccess(){
 
 //Método que muestra el loader
 function showLoader(){
-
+    const loaderElem = document.getElementById('loaderContent');
+    amountOutElem.setAttribute('hidden', true);
+    loaderElem.removeAttribute('hidden');
 }
+
+//Método que oculta el loader
+function hideLoader(){
+    const loaderElem = document.getElementById('loaderContent');
+    loaderElem.setAttribute('hidden', true);
+    amountOutElem.removeAttribute('hidden');
+} 
 
 //Eventos 'listeners'
 
@@ -90,4 +95,3 @@ swapElem.addEventListener('click', () => {
 });
 
 calculate();
-
