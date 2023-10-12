@@ -71,7 +71,7 @@ function isValidLength(input, label, min, max){
     return error;
 }
 
-//Metodo que comprueba si un campo está vacío y si el email es válido
+//Método que comprueba si un campo está vacío y si el email es válido
 function isEmpty(input, label){
     let error = false;
     if(input.value === ''){
