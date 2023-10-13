@@ -1,5 +1,7 @@
+//Mensajes
 const message_index_negativeNumber_error = 'La cantidad no puede ser negativa';
 
+//Elementos del DOM
 const currencyInElem = document.getElementById('currencyIn');
 const currencyOutElem = document.getElementById('currencyOut');
 const amountInElem = document.getElementById('amountIn');
@@ -8,7 +10,6 @@ const rateElem = document.getElementById('rate');
 const swapElem = document.getElementById('swap');
 
 //Extrae las tasas convertidas y actualiza el DOM
-
 function calculate(){
     const currencyIn = currencyInElem.value;
     const currencyOut = currencyOutElem.value;
