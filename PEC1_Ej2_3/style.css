@@ -20,7 +20,7 @@ body {
   margin: 20px 0;
 }
 
-.movieContainer select {
+.movieContainer select, .currency #currencySelect {
   background-color: #fff;
   border: 0;
   border-radius: 5px;

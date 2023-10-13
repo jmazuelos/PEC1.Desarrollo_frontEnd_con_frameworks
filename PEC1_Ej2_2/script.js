@@ -52,7 +52,7 @@ function calculate(){
         });
 }
 
-//Método que muestra el error
+//Metodo que muestra el error
 function showError(message){
     const currencyElem = currencyInElem.parentElement;
     currencyElem.classList.add('error');
@@ -61,20 +61,20 @@ function showError(message){
     small.innerText = message;
 }
 
-//Método que elimina el error
+//Metodo que elimina el error
 function showSuccess(){
     const currencyElem = currencyInElem.parentElement;
     currencyElem.classList.remove('error');
 }
 
-//Método que muestra el loader
+//Metodo que muestra el loader
 function showLoader(){
     const loaderElem = document.getElementById('loaderContent');
     amountOutElem.setAttribute('hidden', true);
     loaderElem.removeAttribute('hidden');
 }
 
-//Método que oculta el loader
+//Metodo que oculta el loader
 function hideLoader(){
     const loaderElem = document.getElementById('loaderContent');
     loaderElem.setAttribute('hidden', true);
